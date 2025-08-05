@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biruk Belete Amare - Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Base Styles with CSS Variables for Theme Switching */
+        :root {
+            /* Light Theme Variables */
+            --primary-color: #00ffcc;
+            --primary-hover: #00ffcc;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --bg-color: #ffffff;
+            --bg-muted: #f3f4f6;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --logo-inner-bg: #ffffff;
+            --cursor-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Dark Theme Variables */
+        .dark {
+            --primary-color: #00ffccd7;
+            --primary-hover: #00ffcc;
+            --text-color: #f9fafb;
+            --text-muted: #d1d5db;
+            --bg-color: #111827;
+            --bg-muted: #1f2937;
+            --border-color: #374151;
+            --success-color: #10b981;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+            --header-bg: rgba(17, 24, 39, 0.95);
+            --logo-inner-bg: #111827;
+            --cursor-color: rgba(139, 92, 246, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Particle Background */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float-particle 20s linear infinite;
+        }
+
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.3;
+            }
+
+            90% {
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--cursor-color);
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%) scale(1);
+            transition: transform 0.1s ease;
+        }
+
+        .cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background-color: var(--primary-color);
+            opacity: 0.8;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Stagger Animation */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .stagger-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.5s ease, border-color 0.5s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-mark {
+            position: relative;
+            width: 40px;
+            height: 40px;
+        }
+
+        .hexagon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: linear-gradient(135deg, #ff006e 0%, #8338ec 100%);
+            animation: rotate 12s linear infinite;
+        }
+
+        .hexagon-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 70%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: var(--logo-inner-bg);
+            transition: background-color 0.5s ease;
+        }
+
+        .hexagon-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40%;
+            height: 40%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: linear-gradient(135deg, #3a86ff 0%, #00f5d4 100%);
+            animation: pulse 3s ease-in-out infinite alternate;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff006e 0%, #8338ec 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 50px;
+            height: 26px;
+            border-radius: 13px;
+            background-color: var(--bg-muted);
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle i {
+            font-size: 14px;
+            color: var(--text-muted);
+            z-index: 1;
+        }
+
+        .theme-toggle .toggle-ball {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            left: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        .dark .theme-toggle .toggle-ball {
+            transform: translateX(24px);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        /* Resume Container */
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-color);
+            box-shadow: var(--card-shadow);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Resume Header */
+        .resume-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #8b5cf6 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgba(255,255,255,0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .resume-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .resume-header .title {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-item i {
+            font-size: 1.1rem;
+        }
+
+        /* Resume Content */
+        .resume-content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Summary */
+        .summary {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--bg-muted);
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(99, 102, 241, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-item:hover::before {
+            opacity: 1;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .company {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .duration {
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .job-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .achievements {
+            list-style: none;
+        }
+
+        .achievements li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .achievements li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: var(--bg-muted);
+            padding: 30px;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-category i {
+            font-size: 1.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px 0;
+        }
+
+        .skill-name {
+            font-weight: 500;
+        }
+
+        .skill-level {
+            display: flex;
+            gap: 3px;
+        }
+
+        .skill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .skill-dot.filled {
+            background: var(--primary-color);
+            animation: skillPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes skillPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Education */
+        .education-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--bg-muted);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+        }
+
+        .education-year {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+            height: fit-content;
+        }
+
+        .education-details h3 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .education-details .institution {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .education-details .description {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Languages */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .language-item {
+            background: var(--bg-muted);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .language-item:hover {
+            transform: translateY(-5px);
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .language-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .language-level {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Certifications */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .certification-item {
+            background: var(--bg-muted);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .certification-name {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .certification-issuer {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .certification-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .header,
+            .theme-toggle,
+            .btn {
+                display: none !important;
+            }
+
+            .main-content {
+                padding-top: 0;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .resume-header {
+                background: #6366f1 !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+
+            body {
+                background: white !important;
+                color: #1f2937 !important;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .resume-header {
+                padding: 40px 20px;
+            }
+
+            .resume-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .resume-header .title {
+                font-size: 1.2rem;
+            }
+
+            .contact-info {
+                gap: 15px;
+            }
+
+            .contact-item {
+                font-size: 0.85rem;
+            }
+
+            .resume-content {
+                padding: 30px 20px;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .education-item {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .skills-grid,
+            .languages-grid,
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, rgba(99, 102, 241, 0.2) 100%);
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .float-1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            right: 5%;
+            animation: float 15s ease-in-out infinite alternate;
+        }
+
+        .float-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 10%;
+            animation: float 12s ease-in-out 2s infinite alternate;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(30px, 30px) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Particle Background -->
+    <div class="particles-container" id="particlesContainer"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo-mark">
+                        <div class="hexagon"></div>
+                        <div class="hexagon-inner"></div>
+                        <div class="hexagon-core"></div>
+                    </div>
+                    <div class="logo-text">Biruk B.</div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                        <div class="toggle-ball"></div>
+                    </div>
+                    <button onclick="window.print()" class="btn btn-outline">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Back to Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="resume-container reveal">
+                <!-- Resume Header -->
+                <div class="resume-header">
+                    <div class="profile-image">
+                        <img src="./images/profile-photo.jfif" alt="Biruk Belete Amare">
+                    </div>
+                    <h1 class="reveal">Biruk Belete Amare</h1>
+                    <div class="title reveal">Multi-Disciplinary Creative Professional</div>
+                    <div class="contact-info reveal">
+                        <div class="contact-item stagger-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>birukbelete563@gmail.com</span>
+                        </div>
+                        <div class="contact-item stagger-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+251989046454</span>
+                        </div>
+                        <div class="contact-item stagger-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Dessie, Ethiopia</span>
+                        </div>
+                        <div class="contact-item stagger-item">
+                            <i class="fab fa-linkedin"></i>
+                            <span>linkedin.com/in/birukbelete</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resume Content -->
+                <div class="resume-content">
+                    <!-- Professional Summary -->
+                    <section class="section reveal">
+                        <h2 class="section-title">Professional Summary</h2>
+                        <p class="summary">
+                            Versatile creative professional with 8+ years of experience spanning video editing, language
+                            translation,
+                            graphic design, and web development. Proven track record of delivering high-quality,
+                            multi-disciplinary
+                            projects for international clients. Combines technical expertise with artistic vision to
+                            create compelling
+                            digital experiences. Fluent in multiple languages with strong cultural adaptation skills,
+                            enabling
+                            effective communication across diverse markets and audiences.
+                        </p>
+                    </section>
+
+                    <!-- Professional Experience -->
+                    <section class="section reveal">
+                        <h2 class="section-title">Professional Experience</h2>
+
+                        <div class="experience-item stagger-item">
+                            <div class="experience-header">
+                                <div>
+                                    <div class="job-title">Senior Creative Specialist</div>
+                                    <div class="company">Freelance / Multiple Clients</div>
+                                </div>
+                                <div class="duration">2020 - Present</div>
+                            </div>
+                            <p class="job-description">
+                                Lead multi-disciplinary creative projects combining video production, translation
+                                services,
+                                graphic design, and web development for international clients across various industries.
+                            </p>
+                            <ul class="achievements">
+                                <li>Completed 150+ projects across video editing, translation, design, and web
+                                    development</li>
+                                <li>Managed end-to-end creative campaigns for Fortune 500 companies</li>
+                                <li>Delivered multilingual content for global market expansion initiatives</li>
+                                <li>Achieved 98% client satisfaction rate with consistent on-time delivery</li>
+                                <li>Increased client revenue by 35% through effective creative strategies</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item stagger-item">
+                            <div class="experience-header">
+                                <div>
+                                    <div class="job-title">Video Editor & Motion Graphics Designer</div>
+                                    <div class="company">Creative Media Solutions</div>
+                                </div>
+                                <div class="duration">2018 - 2020</div>
+                            </div>
+                            <p class="job-description">
+                                Specialized in video editing, motion graphics, and post-production for commercial and
+                                documentary projects, working with high-profile clients and production companies.
+                            </p>
+                            <ul class="achievements">
+                                <li>Edited 50+ commercial videos and documentaries</li>
+                                <li>Created motion graphics and visual effects for brand campaigns</li>
+                                <li>Collaborated with directors and producers on creative vision</li>
+                                <li>Reduced post-production time by 40% through workflow optimization</li>
+                                <li>Won "Best Editing" award at Regional Film Festival</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item stagger-item">
+                            <div class="experience-header">
+                                <div>
+                                    <div class="job-title">Translator & Localization Specialist</div>
+                                    <div class="company">Global Language Services</div>
+                                </div>
+                                <div class="duration">2016 - 2018</div>
+                            </div>
+                            <p class="job-description">
+                                Provided professional translation and localization services for technical documentation,
+                                marketing materials, and multimedia content across multiple language pairs.
+                            </p>
+                            <ul class="achievements">
+                                <li>Translated 500+ documents across technical, marketing, and legal domains</li>
+                                <li>Localized software interfaces and mobile applications</li>
+                                <li>Provided simultaneous interpretation for international conferences</li>
+                                <li>Maintained 99.5% accuracy rate in translation quality assessments</li>
+                                <li>Trained junior translators on best practices and quality standards</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Skills -->
+                    <section class="section reveal">
+                        <h2 class="section-title">Technical Skills</h2>
+                        <div class="skills-grid">
+                            <div class="skill-category stagger-item">
+                                <h3><i class="fas fa-film"></i> Video Editing</h3>
+                                <ul class="skill-list">
+                                    <li class="skill-item">
+                                        <span class="skill-name">Adobe Premiere Pro</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">Final Cut Pro</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">After Effects</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">DaVinci Resolve</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="skill-category stagger-item">
+                                <h3><i class="fas fa-language"></i> Translation</h3>
+                                <ul class="skill-list">
+                                    <li class="skill-item">
+                                        <span class="skill-name">English-Spanish</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">English-French</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">Localization</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">Subtitling</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="skill-category stagger-item">
+                                <h3><i class="fas fa-palette"></i> Design</h3>
+                                <ul class="skill-list">
+                                    <li class="skill-item">
+                                        <span class="skill-name">Adobe Photoshop</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">Adobe Illustrator</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">UI/UX Design</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">Brand Identity</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="skill-category stagger-item">
+                                <h3><i class="fas fa-code"></i> Web Development</h3>
+                                <ul class="skill-list">
+                                    <li class="skill-item">
+                                        <span class="skill-name">HTML/CSS</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">JavaScript</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">React</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                    <li class="skill-item">
+                                        <span class="skill-name">WordPress</span>
+                                        <div class="skill-level">
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot filled"></div>
+                                            <div class="skill-dot"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                    <!-- Languages -->
+                    <section class="section reveal">
+                        <h2 class="section-title">Languages</h2>
+                        <div class="languages-grid">
+                            <div class="language-item stagger-item">
+                                <div class="language-name">English</div>
+                                <div class="language-level">Native/Fluent</div>
+                            </div>
+                            <div class="language-item stagger-item">
+                                <div class="language-name">Amharic</div>
+                                <div class="language-level">Native</div>
+                            </div>
+                            <div class="language-item stagger-item">
+                                <div class="language-name">Spanish</div>
+                                <div class="language-level">Professional</div>
+                            </div>
+                            <div class="language-item stagger-item">
+                                <div class="language-name">French</div>
+                                <div class="language-level">Intermediate</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Certifications -->
+                    <section class="section reveal">
+                        <h2 class="section-title">Certifications & Awards</h2>
+                        <div class="certifications-grid">
+                            <div class="certification-item stagger-item">
+                                <div class="certification-name">Adobe Certified Expert - Premiere Pro</div>
+                                <div class="certification-issuer">Adobe Systems</div>
+                                <div class="certification-date">2023</div>
+                            </div>
+                            <div class="certification-item stagger-item">
+                                <div class="certification-name">Certified Translation Professional</div>
+                                <div class="certification-issuer">American Translators Association</div>
+                                <div class="certification-date">2022</div>
+                            </div>
+                            <div class="certification-item stagger-item">
+                                <div class="certification-name">Google UX Design Certificate</div>
+                                <div class="certification-issuer">Google Career Certificates</div>
+                                <div class="certification-date">2023</div>
+                            </div>
+                            <div class="certification-item stagger-item">
+                                <div class="certification-name">Best Creative Campaign Award</div>
+                                <div class="certification-issuer">Regional Marketing Awards</div>
+                                <div class="certification-date">2023</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="floating-element float-1"></div>
+        <div class="floating-element float-2"></div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Loading Screen
+            const loadingScreen = document.getElementById('loadingScreen');
+
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    loadingScreen.classList.add('fade-out');
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }, 1000);
+            });
+
+            // Particle System
+            function createParticles() {
+                const particlesContainer = document.getElementById('particlesContainer');
+                const particleCount = 30;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 20 + 's';
+                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            createParticles();
+
+            // Custom cursor
+            const cursor = document.querySelector('.cursor');
+            const hoverElements = document.querySelectorAll('a, button, .btn, .experience-item, .skill-category, .education-item, .language-item, .certification-item');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            hoverElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hover');
+                });
+                element.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hover');
+                });
+            });
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const htmlElement = document.documentElement;
+
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                htmlElement.className = savedTheme;
+            } else {
+                const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (prefersDarkMode) {
+                    htmlElement.classList.add('dark');
+                }
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    htmlElement.classList.add('light');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    htmlElement.classList.remove('light');
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // Reveal Animations
+            function revealElements() {
+                const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+                reveals.forEach(element => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+
+                    if (elementTop < windowHeight - elementVisible) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+
+            // Stagger Animation
+            function staggerAnimation() {
+                const staggerContainers = document.querySelectorAll('.contact-info, .skills-grid, .certifications-grid, .languages-grid');
+
+                staggerContainers.forEach(container => {
+                    const containerTop = container.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (containerTop < windowHeight - 100) {
+                        const items = container.querySelectorAll('.stagger-item');
+                        items.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('animate');
+                            }, index * 100);
+                        });
+                    }
+                });
+
+                // Handle individual stagger items
+                const staggerItems = document.querySelectorAll('.stagger-item');
+                staggerItems.forEach(item => {
+                    const itemTop = item.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (itemTop < windowHeight - 100) {
+                        item.classList.add('animate');
+                    }
+                });
+            }
+
+            // Skill dots animation
+            function animateSkillDots() {
+                const skillCategories = document.querySelectorAll('.skill-category');
+
+                skillCategories.forEach(category => {
+                    const categoryTop = category.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (categoryTop < windowHeight - 100) {
+                        const skillDots = category.querySelectorAll('.skill-dot.filled');
+                        skillDots.forEach((dot, index) => {
+                            setTimeout(() => {
+                                dot.style.animationDelay = `${index * 0.1}s`;
+                            }, index * 100);
+                        });
+                    }
+                });
+            }
+
+            // Parallax effect for floating elements
+            function parallaxEffect() {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.floating-element');
+
+                parallaxElements.forEach((element, index) => {
+                    const speed = (index + 1) * 0.5;
+                    const yPos = -(scrolled * speed);
+                    element.style.transform = `translateY(${yPos}px)`;
+                });
+            }
+
+            // Main scroll event listener
+            window.addEventListener("scroll", () => {
+                revealElements();
+                staggerAnimation();
+                animateSkillDots();
+                parallaxEffect();
+            });
+
+            // Initialize animations
+            revealElements();
+            staggerAnimation();
+            animateSkillDots();
+
+            // Add hover effect for logo
+            const logoMark = document.querySelector('.logo-mark');
+            if (logoMark) {
+                logoMark.addEventListener('mouseenter', () => {
+                    const core = logoMark.querySelector('.hexagon-core');
+                    if (core) {
+                        core.style.animationDuration = '1.5s';
+                    }
+                });
+
+                logoMark.addEventListener('mouseleave', () => {
+                    const core = logoMark.querySelector('.hexagon-core');
+                    if (core) {
+                        core.style.animationDuration = '3s';
+                    }
+                });
+            }
+
+            // Smooth scrolling for any internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
